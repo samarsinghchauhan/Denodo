@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+
+Name: CustomElement
+PluginType: handler
+PluginName: XMLCustomHandler
+PluginClass: com.denodo.scheduler.demo.XMLCustomHandler

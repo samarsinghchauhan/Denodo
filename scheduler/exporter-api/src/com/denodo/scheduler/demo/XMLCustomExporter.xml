@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE metaconfig SYSTEM "custom-metaconfig.dtd">
+<metaconfig>
+	<element type="exporter" subType="xml-custom-exporter"
+		class="com.denodo.scheduler.demo.XMLCustomExporter" />
+	<param javaType="java.lang.String" mandatory="true" multivalued="false"
+		name="Output XML file absolute path" />
+	<param javaType="java.lang.Boolean" mandatory="true" multivalued="false"
+		name="Export job identifier, job name, project name and execution time fields" />
+</metaconfig>

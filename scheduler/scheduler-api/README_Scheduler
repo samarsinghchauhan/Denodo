@@ -1,0 +1,30 @@
+# ########################################################################
+#                        Scheduler - Samples README                      #
+#                      (c) Denodo Technologies - 2014                    #
+# ########################################################################
+
+  Important note: For compiling and testing the samples, JDK 1.8 or higher
+    is required. The JAVA_HOME environment variable must be correctly set 
+    or the JDK bin directory must be in the PATH. 
+
+* Native Test.
+    
+    There is a client sample to illustrate the Scheduler API access:
+
+    + The schedulerclient is a client sample for the following Scheduler facilities:
+        - Add/Delete/Update/Find job.
+        - Start/Stop/Enable/Disable job.
+        - Find all job names.
+        - Create datasources.
+        - Create filter sequences.
+
+    + Compilation scripts:
+
+        - compile_schedulerclient
+
+    + All demo clients require input arguments:
+
+        - test_schedulerclient -adddatasource "dsARN" -h localhost -p 8000 "ARN"
+        - test_schedulerclient -addjob "Test" -h localhost -p 8000 "Test job" "ARN"
+        - test_schedulerclient -findJob "Test" -h localhost -p 8000
+          (for more information: test_searchclient)

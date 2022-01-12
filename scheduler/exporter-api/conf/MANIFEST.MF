@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+
+Name: CustomElement
+PluginType: exporter
+PluginName: XMLCustomExporter
+PluginClass: com.denodo.scheduler.demo.XMLCustomExporter
+
