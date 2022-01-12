@@ -1,0 +1,111 @@
+########################################################################
+#                     Virtual DataPort - Samples README
+#                      (c) Denodo Technologies - 2015
+# ########################################################################
+
+  *Important note*: for compiling and testing these samples, you need to:
+    - Install a JDK that corresponds to the JRE version running Denodo VDP.
+    - Set the JAVA_HOME environment variable to the location of this JDK. 
+
+<DENODO_HOME> denotes the root directory where Virtual DataPort is installed.
+
+
+* Custom Functions.
+
+  + Requirements
+  
+    In order to execute the sample Virtual DataPort Stored Procedures included 
+    with the Denodo Platform, you need to follow these steps: 
+  
+    - Deploy the Web service "sales.war" into a Web application server (like 
+      Apache Tomcat).
+      This file is located in the directory <DENODO_HOME>\samples\vdp\incidents
+      
+    - Create a database with certain tables. The Denodo Platform provides SQL 
+      scripts to create these tables in the following database systems:
+        - MySQL
+        - Oracle
+        - PostgreSQL
+
+      These SQL scripts are located in the directory 
+      <DENODO_HOME>\samples\vdp\incidents
+      
+      
+    - Create several base views
+      
+      - Open the path <DENODO_HOME>\samples\vdp\incidents and edit the 
+      appropriate file depending on the database where 
+      you executed the previous script:
+        - Incident_Revenue_MySQL.vql
+        - Incident_Revenue_Oracle.vql
+        - Or, Incident_Revenue_PostgreSQL.vql
+      
+      Before executing this file, change the following parameters to match 
+      the configuration of your environment:
+      - The parameters "@DATABASE_URI", "@USERNAME" and "@USERPASSWORD" 
+        of the "CREATE DATASOURCE JDBC" statements.
+      - The parameter "@SCHEMA_NAME" of the "CREATE WRAPPER JDBC" statements.
+      - The parameter "@SALES_HOST" of the "CREATE DATASOURCE WS sales_ds" 
+        statement must point to the server hosting "sales.war", e.g. "localhost:8080".
+      
+    - Import the VQL script: open the Administration Tool, log-in and click
+      "Import" on the menu "File". Then, select the VQL script that you have modified
+      (<DENODO_HOME>\samples\vdp\incidents\Incident_Revenue_<DATABASE>.vql)
+        
+      Select the file that you edited before.
+      
+    - Click "Refresh" on the menu "File".
+
+
+  This directory contains the source of three sample Custom Functions:
+
+  1. CONCAT_SAMPLE: receives a variable number of parameters of type "text" and 
+     returns the concatenation of them.
+
+
+  2. GROUP_CONCAT_SAMPLE: an aggregation function that receives one or more 
+     "GROUP BY" fields and returns the concatenation of the values for those 
+     fields in each group.
+     It has two optional input parameters:
+      - The separator of the values in each group (default "") 
+      - And, the separator between groups (default ",").
+
+    
+  3. SPLIT_SAMPLE: receives a regular expression and a string
+     and returns an array of substrings. These substrings are the result of 
+     splitting the string around matches of the given regular expression.
+
+
+
+  + Compile the Custom Functions:
+
+      - Execute the script
+        <DENODO_HOME>\samples\vdp\customFunctions\scripts\compile_customfunctions
+
+        The output of this script is a Jar file located in the directory
+        <DENODO_HOME>\samples\vdp\customFunctions\target\jars
+
+
+  + Load the Jar file with the Custom Functions into Virtual DataPort.
+    To do this, launch the Virtual DataPort Administration Tool, log in,  
+    open the wizard "Jar Management", in the menu "File > Extensions" and 
+    click on "Create". Then, select the file:
+    <DENODO_HOME>\samples\vdp\customFunctions\target\jars\denodo-demo-customfunctions.jar
+
+
+  + You can begin using them in queries. For example:
+    
+    - SELECT concat_sample(summary, taxid) 
+      FROM internet_inc;
+      
+    - SELECT group_concat_sample(".", summary) 
+      FROM internet_inc 
+      GROUP BY specific_field2;
+      
+    - SELECT split_sample(" ", summary) 
+      FROM internet_inc;
+
+See more information about developing custom policies in the section 
+"Developing Custom Functions" of the "Virtual DataPort Developer Guide".
+
+# #############################################################################
