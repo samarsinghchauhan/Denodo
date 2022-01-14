@@ -26,8 +26,12 @@ denodo_uid=denodo_connection.details[env]['userid']
 denodo_pwd=denodo_connection.details[env]['password']
 
 ############################################################
-text_values={}
-int_values={}
+text_values={"JOHN"," JOHN DOE","JOHN DOE SR","JOHN DOE SMITH","JOHN DOE SR.",""," "
+"!@#$%^&*()-/","JOHN O` DOE","JOHN.DOE","JOHN,DOE","JOHN ",
+"John P. O'Neill","JOHN.DOE@EMAIL.COM","JOHN 1234567890","123456789",
+"123456789.00","123456789.99","0","0.0","-1","-0.0001","12345 12345",
+"1","22","333","4444","55555","666666","7777777"}
+int_values={"0","","1","-1","0.0","-0.1"}
 decimal_values={}
 date_values={}
 
