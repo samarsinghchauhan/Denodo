@@ -35,3 +35,5 @@ if __name__ == "__main__":
         output=denodo_functions.runVQLoutput(odbcdriver,denodo_server,denodo_port,denodo_uid,denodo_pwd,query,create_flag="N")
         denodo_functions.exportCSV(output,outfile)
         f.close()
+        
+        #
